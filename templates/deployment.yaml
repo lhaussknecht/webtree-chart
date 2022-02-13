@@ -45,6 +45,16 @@ spec:
             httpGet:
               path: /
               port: http
+          env:
+          - name: DB_TYPE
+            value: sqlite
+          - name: BASE_URL
+            value: "https://webtrees.example.com"
+          volumeMounts:
+          - name: data-vol
+            mountPath: /var/www/webtrees/data/
+          - name: media-vol
+            mountPath: /var/www/webtrees/media/
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -59,3 +69,10 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+      - name: data-vol
+        persistentVolumeClaim:
+          claimName: webtree-pvc
+      - name: media-vol
+        persistentVolumeClaim:
+          claimName: webtree-media-pvc
