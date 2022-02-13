@@ -72,7 +72,7 @@ spec:
       volumes:
       - name: data-vol
         persistentVolumeClaim:
-          claimName: webtree-pvc
+          claimName: webtree-data-pvc
       - name: media-vol
         persistentVolumeClaim:
           claimName: webtree-media-pvc
