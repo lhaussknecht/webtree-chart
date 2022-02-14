@@ -42,7 +42,7 @@ service:
 
 ingress:
   enabled: true
-  annotations: {}
+  annotations:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
     cert-manager.io/issuer: "letsencrypt-prod"
@@ -53,10 +53,10 @@ ingress:
         backend:
           serviceName: chart-example.local
           servicePort: 80
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  tls:
+    - secretName: chart-example-tls
+      hosts:
+        - chart-example.local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
